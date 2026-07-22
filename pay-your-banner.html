@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pay for Your Banner — Brush & Bloom Banners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Caveat:wght@500;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --berry:#C96079;
+    --berry-deep:#8f3f54;
+    --ink:#4A2536;
+    --yellow:#F5EBC7;
+    --yellow-deep:#e9d99a;
+    --cream:#FFFCF6;
+    --teal:#5f8f88;
+    --gold:#d99f4c;
+    --paper-shadow: 0 18px 40px -20px rgba(74,37,54,0.35);
+    --wrap: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'DM Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+  .script{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- texture bg helper ---------- */
+  .paper-grain{
+    position:relative;
+  }
+  .paper-grain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(74,37,54,0.035) 1px, transparent 1px);
+    background-size:3px 3px;
+    pointer-events:none;
+    mix-blend-mode:multiply;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,252,246,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(74,37,54,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:600;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .dot-brush{width:30px;height:30px;flex:none;}
+  .nav-links{
+    display:flex; gap:32px; align-items:center;
+    font-size:0.95rem;
+  }
+  .nav-links a{
+    position:relative; padding:4px 0;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--berry);}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:var(--berry); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--berry); color:var(--cream)!important;
+    padding:10px 20px; border-radius:100px;
+    font-weight:500; font-size:0.9rem;
+    box-shadow:var(--paper-shadow);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{background:var(--berry-deep); transform:translateY(-1px);}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+  .burger svg{width:26px;height:26px;}
+  @media(max-width:860px){
+    .nav-links{
+      position:fixed; inset:64px 0 auto 0; background:var(--cream);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:8px 24px 24px; border-bottom:1px solid rgba(74,37,54,0.08);
+      transform:translateY(-130%); transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-links a{width:100%; padding:12px 0; border-bottom:1px solid rgba(74,37,54,0.06);}
+    .nav-cta{margin-top:12px;}
+    .burger{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:70px 0 40px;
+    background:linear-gradient(180deg, var(--yellow) 0%, var(--yellow) 62%, var(--cream) 62%);
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    position:relative; z-index:2;
+  }
+  @media(max-width:900px){ .hero .wrap{grid-template-columns:1fr;} }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--berry-deep); font-weight:600; margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:""; width:7px;height:7px;border-radius:50%;background:var(--berry);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.06;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--berry); font-weight:500;
+    position:relative; white-space:nowrap;
+  }
+  .hero-sub{
+    margin:22px 0 30px; font-size:1.08rem; line-height:1.6; max-width:46ch;
+    color:rgba(74,37,54,0.85);
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:100px; font-weight:600; font-size:0.98rem;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary{
+    background:var(--berry); color:var(--cream);
+    box-shadow:var(--paper-shadow);
+  }
+  .btn-primary:hover{transform:translateY(-2px) rotate(-0.4deg);}
+  .btn-ghost{
+    border:1.5px solid var(--ink); color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
+
+  .hero-art{position:relative; height:420px;}
+  @media(max-width:900px){ .hero-art{height:320px; order:-1;} }
+  .hero-banner{
+    position:absolute; inset:0;
+    animation:sway 6s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes sway{
+    0%,100%{transform:rotate(-1.1deg);}
+    50%{transform:rotate(1.1deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-banner{animation:none;}
+  }
+
+  /* clothesline holding the hero banner */
+  .line-deco{position:absolute; top:60px; left:-40px; right:-40px; height:4px; background:rgba(74,37,54,0.18); border-radius:2px;}
+
+  /* ---------- BRUSH DIVIDER ---------- */
+  .brush-divider{display:block; width:100%; height:auto; margin-top:-2px;}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{padding:96px 0;}
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head .eyebrow{justify-content:center; display:flex;}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem); margin-bottom:14px;}
+  .section-head p{color:rgba(74,37,54,0.75); font-size:1.05rem; line-height:1.6;}
+
+  /* ---------- BANNER LINE (products) ---------- */
+  .washing-line{position:relative; padding-top:40px;}
+  .rope{
+    position:absolute; top:78px; left:0; right:0; height:0;
+    border-top:3px dashed rgba(74,37,54,0.25);
+  }
+  .pennants{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:28px;
+    max-width:640px; margin:0 auto;
+    position:relative; z-index:2;
+  }
+  @media(max-width:640px){ .pennants{grid-template-columns:1fr; max-width:360px;} }
+  .pennant{
+    position:relative;
+    animation:dangle 5.5s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  .pennant:nth-child(2n){animation-delay:.6s;}
+  .pennant:nth-child(3n){animation-delay:1.2s;}
+  @keyframes dangle{
+    0%,100%{transform:rotate(-1.6deg);}
+    50%{transform:rotate(1.6deg);}
+  }
+  @media (prefers-reduced-motion: reduce){ .pennant{animation:none;} }
+  .clip{
+    width:20px;height:20px; background:var(--berry); border-radius:4px;
+    margin:0 auto -6px; position:relative; z-index:3;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+  }
+  .pennant-card{
+    background:var(--cream);
+    border-radius:6px 6px 4px 4px;
+    padding:26px 20px 34px;
+    box-shadow:var(--paper-shadow);
+    clip-path: polygon(0 0,100% 0,100% 88%,50% 100%,0 88%);
+    text-align:center;
+    border:1px solid rgba(74,37,54,0.06);
+    min-height:230px;
+  }
+  .pennant-card .ic{width:44px;height:44px;margin:0 auto 14px;}
+  .pennant-card h3{font-size:1.2rem; margin-bottom:8px;}
+  .pennant-card p{font-size:0.92rem; color:rgba(74,37,54,0.72); line-height:1.5; margin:0;}
+  .pennant-card .price{
+    display:block; margin-top:12px; font-weight:600; color:var(--berry-deep); font-size:0.9rem;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-section{background:var(--yellow); position:relative;}
+  .process-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:36px; counter-reset:step;
+    max-width:920px; margin:0 auto;
+  }
+  @media(max-width:700px){.process-grid{grid-template-columns:1fr; max-width:440px;}}
+  .process-note{
+    text-align:center; margin:48px auto 0; max-width:560px;
+    font-size:0.92rem; color:var(--berry-deep); font-weight:500;
+    background:rgba(255,252,246,0.55); border:1px solid rgba(74,37,54,0.12);
+    border-radius:100px; padding:12px 24px;
+  }
+  .step{position:relative; padding-top:8px;}
+  .step .num{
+    font-family:'Fraunces', serif; font-style:italic; font-size:2.6rem; color:var(--berry);
+    line-height:1; margin-bottom:10px; display:block;
+  }
+  .step h3{font-size:1.05rem; margin-bottom:8px;}
+  .step p{font-size:0.9rem; color:rgba(74,37,54,0.72); line-height:1.55; margin:0;}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center;
+  }
+  @media(max-width:900px){ .about{grid-template-columns:1fr;} }
+  .about-art{position:relative;}
+  .about-art .frame{
+    background:var(--yellow); border-radius:14px; padding:18px; box-shadow:var(--paper-shadow);
+    transform:rotate(-2deg);
+  }
+  .about-art .frame img,.about-art .frame svg{border-radius:8px; display:block; width:100%;}
+  .about-art .frame img{aspect-ratio:300/340; object-fit:cover;}
+  .frame-placeholder{
+    aspect-ratio:300/340; border-radius:8px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    background:repeating-linear-gradient(135deg, rgba(74,37,54,0.06) 0 10px, rgba(74,37,54,0.03) 10px 20px);
+    color:var(--berry-deep); font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem;
+    border:1.5px dashed rgba(74,37,54,0.3);
+  }
+  .frame-placeholder small{font-family:'DM Sans',sans-serif; font-style:normal; font-size:0.75rem; opacity:0.7; margin-top:6px;}
+  .about h2{font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:18px;}
+  .about p{font-size:1.02rem; line-height:1.7; color:rgba(74,37,54,0.85); margin:0 0 16px;}
+  .signoff{font-size:1.7rem; margin-top:12px; margin-bottom:0; color:var(--berry-deep);}
+  .signoff-name{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:1.6rem; color:var(--ink); margin-top:-10px; letter-spacing:0.02em;
+  }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews-section{background:var(--ink); color:var(--cream);}
+  .reviews-section .section-head p{color:rgba(255,252,246,0.7);}
+  .reviews-section .eyebrow{color:var(--yellow);}
+  .reviews-section .eyebrow::before{background:var(--yellow);}
+  .review-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media(max-width:900px){ .review-grid{grid-template-columns:1fr;} }
+  .review-card{
+    background:rgba(255,252,246,0.06);
+    border:1px solid rgba(255,252,246,0.14);
+    border-radius:14px; padding:28px;
+  }
+  .stars{color:var(--gold); letter-spacing:2px; margin-bottom:14px; font-size:1rem;}
+  .review-card p{font-size:0.95rem; line-height:1.65; color:rgba(255,252,246,0.88); margin:0 0 16px;}
+  .review-who{font-family:'Fraunces',serif; font-style:italic; color:var(--yellow);}
+
+  /* ---------- CTA / CONTACT ---------- */
+  .cta-section{
+    text-align:center; padding:110px 0;
+    background:linear-gradient(180deg, var(--cream), var(--yellow));
+    position:relative;
+  }
+  .cta-section h2{font-size:clamp(2rem,4vw,2.9rem); margin-bottom:18px;}
+  .cta-section p{max-width:52ch; margin:0 auto 34px; font-size:1.05rem; color:rgba(74,37,54,0.8);}
+
+  footer{background:var(--ink); color:rgba(255,252,246,0.75); padding:52px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; margin-bottom:36px;}
+  @media(max-width:700px){ .footer-grid{grid-template-columns:1fr;} }
+  .footer-grid h4{color:var(--cream); font-family:'Fraunces',serif; font-weight:500; margin-bottom:14px; font-size:1.05rem;}
+  .footer-grid a{display:block; padding:5px 0; font-size:0.92rem; color:rgba(255,252,246,0.7); transition:color .2s;}
+  .footer-grid a:hover{color:var(--yellow);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,252,246,0.14); padding-top:20px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.82rem; color:rgba(255,252,246,0.55);
+  }
+
+  ::selection{background:var(--berry); color:var(--cream);}
+  :focus-visible{outline:2px solid var(--berry-deep); outline-offset:3px;}
+
+</style>
+<style>
+  .pay-wrap{
+    min-height:70vh; display:flex; align-items:center; justify-content:center;
+    padding:80px 20px;
+  }
+  .pay-card{
+    max-width:480px; width:100%; text-align:center;
+    background:var(--yellow); border-radius:18px; padding:44px 36px;
+    box-shadow:var(--paper-shadow);
+  }
+  .pay-card h1{font-size:1.8rem; margin-bottom:14px;}
+  .pay-card p{color:rgba(74,37,54,0.8); font-size:0.98rem; line-height:1.6; margin:0 0 26px;}
+  .pay-amount{
+    font-family:'Fraunces',serif; font-style:italic; font-size:2.2rem; color:var(--berry-deep);
+    margin-bottom:26px;
+  }
+  .pay-btn{
+    border:none; cursor:pointer; font-family:'DM Sans',sans-serif; width:100%; justify-content:center;
+  }
+  .pay-btn:disabled{opacity:0.6; cursor:not-allowed;}
+  .pay-error{color:var(--berry-deep); font-size:0.88rem; margin-top:14px; display:none;}
+  .pay-error.show{display:block;}
+  .pay-note{font-size:0.82rem; color:rgba(74,37,54,0.6); margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">
+      <svg class="dot-brush" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" fill="#F5EBC7" stroke="#C96079" stroke-width="1.5"/>
+        <path d="M13 24c1-6 3-10 7-13 1 3-1 6-3 8-1 3 0 6 3 6-3 3-8 2-7-1z" fill="#C96079"/>
+      </svg>
+      Brush &amp; Bloom
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="shop.html">Banners</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#about">About</a>
+      <a href="refunds-shipping.html">Refunds &amp; Shipping</a>
+      <a href="start-your-banner.html" class="nav-cta">Start Your Banner</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#4A2536" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="pay-wrap">
+    <div class="pay-card">
+      <span class="eyebrow" style="justify-content:center;display:flex;">Almost there</span>
+      <h1 id="payTitle">Secure Your Banner</h1>
+      <p id="payDesc">Your details are in! Pop down a deposit to lock in your spot and we'll get started painting.</p>
+      <div class="pay-amount" id="payAmount">$55.00</div>
+      <button type="button" class="btn btn-primary pay-btn" id="payBtn">Pay with Stripe</button>
+      <p class="pay-error" id="payError">Something went wrong — please try again in a moment.</p>
+      <p class="pay-note">You'll be redirected to Stripe's secure checkout to complete payment.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Brush &amp; Bloom Banners</h4>
+        <p style="max-width:32ch; font-size:0.92rem; line-height:1.6;">Hand-painted banners and party art, made one brushstroke at a time.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="shop.html#custom">Custom Banners</a>
+        <a href="shop.html#ready">Ready to Ship</a>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <a href="index.html#about">About</a>
+        <a href="refunds-shipping.html">Refunds &amp; Shipping</a>
+        <a href="start-your-banner.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Brush &amp; Bloom Banners. All rights reserved.</span>
+      <span>Made with paint and patience.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const payBtn = document.getElementById('payBtn');
+  const payError = document.getElementById('payError');
+  const payTitle = document.getElementById('payTitle');
+  const payDesc = document.getElementById('payDesc');
+  const payAmount = document.getElementById('payAmount');
+
+  // This front-end display is just for showing the right copy/price —
+  // the actual charge amount is always decided server-side in the function.
+  const PRICING = {
+    custom: {
+      title: 'Secure Your Custom Banner',
+      desc: "Your details are in! Pop down a deposit to lock in your spot and we'll get started painting.",
+      amount: '$55.00',
+    },
+    ready: {
+      title: 'Pay for Your Ready-to-Ship Banner',
+      desc: "You're claiming an in-stock banner — pay now to reserve it for pickup or shipping.",
+      amount: '$40.00',
+    },
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const type = PRICING[params.get('type')] ? params.get('type') : 'custom';
+  const info = PRICING[type];
+
+  payTitle.textContent = info.title;
+  payDesc.textContent = info.desc;
+  payAmount.textContent = info.amount;
+
+  payBtn.addEventListener('click', async () => {
+    payBtn.disabled = true;
+    payBtn.textContent = 'Redirecting to Stripe...';
+    payError.classList.remove('show');
+
+    try {
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type }),
+      });
+      const data = await res.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'No checkout URL returned');
+      }
+    } catch (err) {
+      payError.textContent = 'Error: ' + err.message;
+      payError.classList.add('show');
+      payBtn.disabled = false;
+      payBtn.textContent = 'Pay with Stripe';
+    }
+  });
+</script>
+
+</body>
+</html>
