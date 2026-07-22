@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Brush & Bloom Banners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Caveat:wght@500;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --berry:#C96079;
+    --berry-deep:#8f3f54;
+    --ink:#4A2536;
+    --yellow:#F5EBC7;
+    --yellow-deep:#e9d99a;
+    --cream:#FFFCF6;
+    --teal:#5f8f88;
+    --gold:#d99f4c;
+    --paper-shadow: 0 18px 40px -20px rgba(74,37,54,0.35);
+    --wrap: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'DM Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+  .script{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- texture bg helper ---------- */
+  .paper-grain{
+    position:relative;
+  }
+  .paper-grain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(74,37,54,0.035) 1px, transparent 1px);
+    background-size:3px 3px;
+    pointer-events:none;
+    mix-blend-mode:multiply;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,252,246,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(74,37,54,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:600;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .dot-brush{width:30px;height:30px;flex:none;}
+  .nav-links{
+    display:flex; gap:32px; align-items:center;
+    font-size:0.95rem;
+  }
+  .nav-links a{
+    position:relative; padding:4px 0;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--berry);}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:var(--berry); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--berry); color:var(--cream)!important;
+    padding:10px 20px; border-radius:100px;
+    font-weight:500; font-size:0.9rem;
+    box-shadow:var(--paper-shadow);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{background:var(--berry-deep); transform:translateY(-1px);}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+  .burger svg{width:26px;height:26px;}
+  @media(max-width:860px){
+    .nav-links{
+      position:fixed; inset:64px 0 auto 0; background:var(--cream);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:8px 24px 24px; border-bottom:1px solid rgba(74,37,54,0.08);
+      transform:translateY(-130%); transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-links a{width:100%; padding:12px 0; border-bottom:1px solid rgba(74,37,54,0.06);}
+    .nav-cta{margin-top:12px;}
+    .burger{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:70px 0 40px;
+    background:linear-gradient(180deg, var(--yellow) 0%, var(--yellow) 62%, var(--cream) 62%);
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    position:relative; z-index:2;
+  }
+  @media(max-width:900px){ .hero .wrap{grid-template-columns:1fr;} }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--berry-deep); font-weight:600; margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:""; width:7px;height:7px;border-radius:50%;background:var(--berry);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.06;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--berry); font-weight:500;
+    position:relative; white-space:nowrap;
+  }
+  .hero-sub{
+    margin:22px 0 30px; font-size:1.08rem; line-height:1.6; max-width:46ch;
+    color:rgba(74,37,54,0.85);
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:100px; font-weight:600; font-size:0.98rem;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary{
+    background:var(--berry); color:var(--cream);
+    box-shadow:var(--paper-shadow);
+  }
+  .btn-primary:hover{transform:translateY(-2px) rotate(-0.4deg);}
+  .btn-ghost{
+    border:1.5px solid var(--ink); color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
+
+  .hero-art{position:relative; height:420px;}
+  @media(max-width:900px){ .hero-art{height:320px; order:-1;} }
+  .hero-banner{
+    position:absolute; inset:0;
+    animation:sway 6s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes sway{
+    0%,100%{transform:rotate(-1.1deg);}
+    50%{transform:rotate(1.1deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-banner{animation:none;}
+  }
+
+  /* clothesline holding the hero banner */
+  .line-deco{position:absolute; top:60px; left:-40px; right:-40px; height:4px; background:rgba(74,37,54,0.18); border-radius:2px;}
+
+  /* ---------- BRUSH DIVIDER ---------- */
+  .brush-divider{display:block; width:100%; height:auto; margin-top:-2px;}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{padding:96px 0;}
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head .eyebrow{justify-content:center; display:flex;}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem); margin-bottom:14px;}
+  .section-head p{color:rgba(74,37,54,0.75); font-size:1.05rem; line-height:1.6;}
+
+  /* ---------- BANNER LINE (products) ---------- */
+  .washing-line{position:relative; padding-top:40px;}
+  .rope{
+    position:absolute; top:78px; left:0; right:0; height:0;
+    border-top:3px dashed rgba(74,37,54,0.25);
+  }
+  .pennants{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:28px;
+    max-width:640px; margin:0 auto;
+    position:relative; z-index:2;
+  }
+  @media(max-width:640px){ .pennants{grid-template-columns:1fr; max-width:360px;} }
+  .pennant{
+    position:relative;
+    animation:dangle 5.5s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  .pennant:nth-child(2n){animation-delay:.6s;}
+  .pennant:nth-child(3n){animation-delay:1.2s;}
+  @keyframes dangle{
+    0%,100%{transform:rotate(-1.6deg);}
+    50%{transform:rotate(1.6deg);}
+  }
+  @media (prefers-reduced-motion: reduce){ .pennant{animation:none;} }
+  .clip{
+    width:20px;height:20px; background:var(--berry); border-radius:4px;
+    margin:0 auto -6px; position:relative; z-index:3;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+  }
+  .pennant-card{
+    background:var(--cream);
+    border-radius:6px 6px 4px 4px;
+    padding:26px 20px 34px;
+    box-shadow:var(--paper-shadow);
+    clip-path: polygon(0 0,100% 0,100% 88%,50% 100%,0 88%);
+    text-align:center;
+    border:1px solid rgba(74,37,54,0.06);
+    min-height:230px;
+  }
+  .pennant-card .ic{width:44px;height:44px;margin:0 auto 14px;}
+  .pennant-card h3{font-size:1.2rem; margin-bottom:8px;}
+  .pennant-card p{font-size:0.92rem; color:rgba(74,37,54,0.72); line-height:1.5; margin:0;}
+  .pennant-card .price{
+    display:block; margin-top:12px; font-weight:600; color:var(--berry-deep); font-size:0.9rem;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-section{background:var(--yellow); position:relative;}
+  .process-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:36px; counter-reset:step;
+    max-width:920px; margin:0 auto;
+  }
+  @media(max-width:700px){.process-grid{grid-template-columns:1fr; max-width:440px;}}
+  .process-note{
+    text-align:center; margin:48px auto 0; max-width:560px;
+    font-size:0.92rem; color:var(--berry-deep); font-weight:500;
+    background:rgba(255,252,246,0.55); border:1px solid rgba(74,37,54,0.12);
+    border-radius:100px; padding:12px 24px;
+  }
+  .step{position:relative; padding-top:8px;}
+  .step .num{
+    font-family:'Fraunces', serif; font-style:italic; font-size:2.6rem; color:var(--berry);
+    line-height:1; margin-bottom:10px; display:block;
+  }
+  .step h3{font-size:1.05rem; margin-bottom:8px;}
+  .step p{font-size:0.9rem; color:rgba(74,37,54,0.72); line-height:1.55; margin:0;}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center;
+  }
+  @media(max-width:900px){ .about{grid-template-columns:1fr;} }
+  .about-art{position:relative;}
+  .about-art .frame{
+    background:var(--yellow); border-radius:14px; padding:18px; box-shadow:var(--paper-shadow);
+    transform:rotate(-2deg);
+  }
+  .about-art .frame img,.about-art .frame svg{border-radius:8px; display:block; width:100%;}
+  .about-art .frame img{aspect-ratio:300/340; object-fit:cover;}
+  .frame-placeholder{
+    aspect-ratio:300/340; border-radius:8px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    background:repeating-linear-gradient(135deg, rgba(74,37,54,0.06) 0 10px, rgba(74,37,54,0.03) 10px 20px);
+    color:var(--berry-deep); font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem;
+    border:1.5px dashed rgba(74,37,54,0.3);
+  }
+  .frame-placeholder small{font-family:'DM Sans',sans-serif; font-style:normal; font-size:0.75rem; opacity:0.7; margin-top:6px;}
+  .about h2{font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:18px;}
+  .about p{font-size:1.02rem; line-height:1.7; color:rgba(74,37,54,0.85); margin:0 0 16px;}
+  .signoff{font-size:1.7rem; margin-top:12px; margin-bottom:0; color:var(--berry-deep);}
+  .signoff-name{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:1.6rem; color:var(--ink); margin-top:-10px; letter-spacing:0.02em;
+  }
+
+  /* ---------- REVIEWS ---------- */
+  .review-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media(max-width:900px){ .review-grid{grid-template-columns:1fr;} }
+  .review-card{
+    background:rgba(255,252,246,0.06);
+    border:1px solid rgba(255,252,246,0.14);
+    border-radius:14px; padding:28px;
+  }
+  .stars{color:var(--gold); letter-spacing:2px; margin-bottom:14px; font-size:1rem;}
+  .review-card p{font-size:0.95rem; line-height:1.65; color:rgba(255,252,246,0.88); margin:0 0 16px;}
+  .review-who{font-family:'Fraunces',serif; font-style:italic; color:var(--yellow);}
+
+  /* ---------- CTA / CONTACT ---------- */
+  .cta-section{
+    text-align:center; padding:110px 0;
+    background:linear-gradient(180deg, var(--cream), var(--yellow));
+    position:relative;
+  }
+  .cta-section h2{font-size:clamp(2rem,4vw,2.9rem); margin-bottom:18px;}
+  .cta-section p{max-width:52ch; margin:0 auto 34px; font-size:1.05rem; color:rgba(74,37,54,0.8);}
+
+  footer{background:var(--ink); color:rgba(255,252,246,0.75); padding:52px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; margin-bottom:36px;}
+  @media(max-width:700px){ .footer-grid{grid-template-columns:1fr;} }
+  .footer-grid h4{color:var(--cream); font-family:'Fraunces',serif; font-weight:500; margin-bottom:14px; font-size:1.05rem;}
+  .footer-grid a{display:block; padding:5px 0; font-size:0.92rem; color:rgba(255,252,246,0.7); transition:color .2s;}
+  .footer-grid a:hover{color:var(--yellow);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,252,246,0.14); padding-top:20px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.82rem; color:rgba(255,252,246,0.55);
+  }
+
+  ::selection{background:var(--berry); color:var(--cream);}
+  :focus-visible{outline:2px solid var(--berry-deep); outline-offset:3px;}
+</style>
+<style>
+  .shop-hero{
+    padding:60px 0 50px;
+    background:linear-gradient(180deg, var(--yellow) 0%, var(--yellow) 70%, var(--cream) 70%);
+    text-align:center;
+  }
+  .shop-hero h1{font-size:clamp(2.1rem,4.4vw,3rem); margin-bottom:14px;}
+  .shop-hero p{max-width:52ch; margin:0 auto; font-size:1.05rem; color:rgba(74,37,54,0.8); line-height:1.6;}
+
+  .shop-block{padding:90px 0;}
+  .shop-block:nth-of-type(even){background:var(--cream);}
+  .shop-block-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    flex-wrap:wrap; margin-bottom:44px;
+  }
+  .shop-block-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+  .shop-block-head p{max-width:46ch; color:rgba(74,37,54,0.75); font-size:0.98rem; line-height:1.6; margin-top:8px;}
+  .shop-block-price{
+    font-family:'Fraunces',serif; font-style:italic; font-size:1.4rem; color:var(--berry-deep);
+    white-space:nowrap;
+  }
+
+  .gallery{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+  }
+  @media(max-width:860px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .gallery{grid-template-columns:1fr;} }
+  .gallery-2col{
+    grid-template-columns:repeat(2,1fr); max-width:640px; margin:0 auto;
+  }
+  @media(max-width:560px){ .gallery-2col{grid-template-columns:1fr; max-width:340px;} }
+  .gallery-item{
+    background:var(--yellow);
+    border-radius:14px; padding:16px;
+    box-shadow:var(--paper-shadow);
+    transform:rotate(-1deg);
+  }
+  .gallery-item:nth-child(2n){transform:rotate(1deg);}
+  .gallery-item:nth-child(3n){transform:rotate(-0.5deg);}
+  .gallery-item svg{border-radius:6px; display:block; width:100%;}
+  .gallery-cap{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:12px; font-size:0.85rem; color:var(--ink);
+  }
+  .gallery-cap .tag{
+    background:var(--berry); color:var(--cream); padding:3px 10px; border-radius:100px; font-weight:600; font-size:0.75rem;
+  }
+
+  .shop-cta-row{margin-top:44px; text-align:center;}
+
+  .pickup-booking{
+    margin:36px auto 0; max-width:480px; text-align:center;
+    padding:28px 26px; border-radius:16px;
+    background:var(--yellow); box-shadow:var(--paper-shadow);
+  }
+  .pickup-booking h3{font-size:1.15rem; margin-bottom:6px;}
+  .pickup-booking p{margin:0 0 18px; font-size:0.95rem; color:rgba(74,37,54,0.78);}
+
+  .note-pill{
+    display:block; text-align:center; margin:14px auto 0; max-width:520px;
+    font-size:0.88rem; color:var(--berry-deep); font-weight:500;
+    background:rgba(255,252,246,0.6); border:1px solid rgba(74,37,54,0.12);
+    border-radius:100px; padding:10px 22px;
+  }
+
+  /* ---------- CLAIM BANNER MODAL ---------- */
+  .modal-overlay{
+    display:none; position:fixed; inset:0; z-index:200;
+    background:rgba(74,37,54,0.45);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-box{
+    position:relative; width:100%; max-width:420px;
+    background:var(--cream); border-radius:16px; padding:36px 30px 28px;
+    box-shadow:0 30px 60px -20px rgba(74,37,54,0.5);
+    max-height:90vh; overflow-y:auto;
+  }
+  .modal-box h3{font-size:1.4rem; margin-bottom:20px; text-align:center;}
+  .modal-close{
+    position:absolute; top:14px; right:16px; background:none; border:none;
+    font-size:1.6rem; line-height:1; color:var(--ink); cursor:pointer; padding:4px;
+  }
+  .modal-close:hover{color:var(--berry);}
+  #claimForm{display:flex; flex-direction:column; gap:16px;}
+  #claimForm label{display:block; font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:6px;}
+  #claimForm input, #claimForm select{
+    width:100%; font-family:'DM Sans', sans-serif; font-size:0.95rem; color:var(--ink);
+    background:var(--cream); border:1.5px solid rgba(74,37,54,0.2); border-radius:10px;
+    padding:11px 13px;
+  }
+  #claimForm input:focus, #claimForm select:focus{border-color:var(--berry); outline:none;}
+  #claimForm .submit-btn{width:100%; justify-content:center; border:none; cursor:pointer; margin-top:4px;}
+  .modal-note{
+    margin:14px 0 0; text-align:center; font-size:0.85rem; color:var(--berry-deep);
+    font-weight:500; line-height:1.5;
+  }
+  .modal-success{display:none; text-align:center;}
+  .modal-success.show{display:block;}
+
+  .pickup-card{
+    max-width:100%; margin:20px 0; text-align:center;
+    background:var(--yellow); border:1.5px solid rgba(74,37,54,0.12); border-radius:16px;
+    padding:24px 20px;
+  }
+  .pickup-card h4{font-size:1.05rem; margin-bottom:8px;}
+  .pickup-card .optional-tag{
+    font-family:'DM Sans',sans-serif; font-weight:500; font-size:0.8rem; color:rgba(74,37,54,0.55);
+  }
+  .pickup-sub{margin:0 0 16px; font-size:0.9rem; color:rgba(74,37,54,0.78);}
+  .pickup-choice{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .pickup-choice .btn{padding:9px 16px; font-size:0.85rem;}
+  .calendly-wrapper{
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .35s ease, opacity .3s ease; margin-top:0;
+  }
+  .calendly-wrapper.expanded{max-height:580px; opacity:1; margin-top:18px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo">
+      <svg class="dot-brush" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="19" fill="#F5EBC7" stroke="#C96079" stroke-width="1.5"/>
+        <path d="M13 24c1-6 3-10 7-13 1 3-1 6-3 8-1 3 0 6 3 6-3 3-8 2-7-1z" fill="#C96079"/>
+      </svg>
+      Brush &amp; Bloom
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="shop.html">Banners</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#about">About</a>
+      <a href="refunds-shipping.html">Refunds &amp; Shipping</a>
+      <a href="start-your-banner.html" class="nav-cta">Start Your Banner</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#4A2536" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="shop-hero">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;display:flex;">The full shop</span>
+      <h1>Custom Banners &amp; Ready to Ship</h1>
+      <p>Two ways to get a hand-painted banner: fully bespoke, or pick one that's already painted and ready to go.</p>
+    </div>
+    <svg class="brush-divider" viewBox="0 0 1440 90" preserveAspectRatio="none" style="height:60px;">
+      <path d="M0 40 C 240 90 420 0 720 30 S 1200 90 1440 30 L1440 90 L0 90 Z" fill="#FFFCF6"/>
+    </svg>
+  </section>
+
+  <!-- CUSTOM BANNERS -->
+  <section class="shop-block" id="custom">
+    <div class="wrap">
+      <div class="shop-block-head">
+        <div>
+          <span class="eyebrow">Made just for you</span>
+          <h2>Custom Banners</h2>
+          <p>Your theme, your colors, your wording — sketched and hand-painted from scratch for your event.</p>
+        </div>
+        <div class="shop-block-price">From $55</div>
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <svg viewBox="0 0 300 220"><path d="M6 20 L294 20 L294 170 Q265 195 240 170 Q215 195 190 170 Q165 195 140 170 Q115 195 90 170 Q65 195 40 170 Q20 190 6 170 Z" fill="#FFFCF6"/>
+            <text x="150" y="95" font-family="Fraunces, serif" font-style="italic" font-size="24" fill="#C96079" text-anchor="middle">Happy Birthday!</text>
+            <path d="M60 120 q8 -14 16 0 q8 -14 16 0" stroke="#d99f4c" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M210 120 q8 -14 16 0 q8 -14 16 0" stroke="#6E9B90" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="150" cy="60" r="5" fill="#C96079"/>
+          </svg>
+          <div class="gallery-cap"><span>Birthday Banner</span><span class="tag">Custom</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <svg viewBox="0 0 300 220"><path d="M6 20 L294 20 L294 170 Q265 195 240 170 Q215 195 190 170 Q165 195 140 170 Q115 195 90 170 Q65 195 40 170 Q20 190 6 170 Z" fill="#FFFCF6"/>
+            <text x="150" y="95" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#6E9B90" text-anchor="middle">Congrats Grad!</text>
+            <path d="M100 60l15 -20 15 20z" fill="#C96079"/>
+            <path d="M180 130l15 -20 15 20z" fill="#d99f4c"/>
+          </svg>
+          <div class="gallery-cap"><span>Graduation Banner</span><span class="tag">Custom</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <svg viewBox="0 0 300 220"><path d="M6 20 L294 20 L294 170 Q265 195 240 170 Q215 195 190 170 Q165 195 140 170 Q115 195 90 170 Q65 195 40 170 Q20 190 6 170 Z" fill="#FFFCF6"/>
+            <text x="150" y="95" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#C96079" text-anchor="middle">Oh Baby!</text>
+            <circle cx="90" cy="130" r="8" fill="#F5EBC7" stroke="#d99f4c" stroke-width="2"/>
+            <circle cx="210" cy="130" r="8" fill="#F5EBC7" stroke="#6E9B90" stroke-width="2"/>
+          </svg>
+          <div class="gallery-cap"><span>Baby Shower Banner</span><span class="tag">Custom</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <svg viewBox="0 0 300 220"><path d="M6 20 L294 20 L294 170 Q265 195 240 170 Q215 195 190 170 Q165 195 140 170 Q115 195 90 170 Q65 195 40 170 Q20 190 6 170 Z" fill="#FFFCF6"/>
+            <text x="150" y="95" font-family="Fraunces, serif" font-style="italic" font-size="26" fill="#d99f4c" text-anchor="middle">Other!</text>
+            <path d="M90 60 q10 -16 20 0 q10 -16 20 0" stroke="#C96079" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M170 60 q10 -16 20 0 q10 -16 20 0" stroke="#6E9B90" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="150" cy="130" r="9" fill="none" stroke="#C96079" stroke-width="3"/>
+            <path d="M120 130l60 0" stroke="#6E9B90" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div class="gallery-cap"><span>Any Occasion</span><span class="tag">Custom</span></div>
+        </div>
+      </div>
+
+      <div class="shop-cta-row">
+        <a href="start-your-banner.html?type=custom" class="btn btn-primary">Start Your Banner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- READY TO SHIP -->
+  <section class="shop-block" id="ready">
+    <div class="wrap">
+      <div class="shop-block-head">
+        <div>
+          <span class="eyebrow">Already painted, ready now</span>
+          <h2>Ready to Ship</h2>
+          <p>In-stock designs for when your event is coming up fast — no wait for a custom mockup.</p>
+        </div>
+        <div class="shop-block-price">From $40</div>
+      </div>
+
+      <div class="gallery gallery-2col">
+        <div class="gallery-item">
+          <svg viewBox="0 0 300 220"><path d="M6 20 L294 20 L294 170 Q265 195 240 170 Q215 195 190 170 Q165 195 140 170 Q115 195 90 170 Q65 195 40 170 Q20 190 6 170 Z" fill="#FFFCF6"/>
+            <text x="150" y="95" font-family="Fraunces, serif" font-style="italic" font-size="24" fill="#d99f4c" text-anchor="middle">Welcome Home!</text>
+            <path d="M120 55l30 -25 30 25v35h-60z" fill="none" stroke="#C96079" stroke-width="3"/>
+          </svg>
+          <div class="gallery-cap"><span>Welcome Home Banner</span><span class="tag">In Stock</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <svg viewBox="0 0 300 220"><path d="M6 20 L294 20 L294 170 Q265 195 240 170 Q215 195 190 170 Q165 195 140 170 Q115 195 90 170 Q65 195 40 170 Q20 190 6 170 Z" fill="#FFFCF6"/>
+            <text x="150" y="95" font-family="Fraunces, serif" font-style="italic" font-size="22" fill="#6E9B90" text-anchor="middle">You Did It!</text>
+            <path d="M90 55 l10 20 -20 4 16 14 -22 4 30 22" stroke="#C96079" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="gallery-cap"><span>Celebration Banner</span><span class="tag">In Stock</span></div>
+        </div>
+      </div>
+
+      <div class="shop-cta-row">
+        <button type="button" class="btn btn-primary" id="claimBtn">Claim This Banner</button>
+        <p class="note-pill">📍 Local drop-off and pickup available &nbsp;|&nbsp; 🚚 Shipping anywhere in the US</p>
+      </div>
+
+      <div class="pickup-booking">
+        <h3>Have your eye on something?</h3>
+        <p>Reserve a time to pick it up now.</p>
+        <a href="https://calendly.com/kmb4kendyl/30min" target="_blank" rel="noopener" class="btn btn-ghost">Book a Pickup Time</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLAIM BANNER MODAL -->
+  <div class="modal-overlay" id="claimOverlay">
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="claimClose" aria-label="Close">&times;</button>
+
+      <form id="claimForm" name="claimBanner" method="POST" data-netlify="true" netlify-honeypot="claim-bot-field">
+        <input type="hidden" name="form-name" value="claimBanner">
+        <p style="position:absolute; left:-9999px;">
+          <label>Don't fill this out if you're human: <input name="claim-bot-field"></label>
+        </p>
+        <h3>Claim This Banner</h3>
+        <div>
+          <label for="claimName">Your name</label>
+          <input type="text" id="claimName" name="claimName" required placeholder="Jane Smith">
+        </div>
+        <div>
+          <label for="claimEmail">Email</label>
+          <input type="email" id="claimEmail" name="claimEmail" required placeholder="jane@email.com">
+        </div>
+        <div>
+          <label for="claimBanner">Which ready-to-ship banner?</label>
+          <select id="claimBanner" name="claimBanner" required>
+            <option value="">Select one</option>
+            <option>Welcome Home Banner</option>
+            <option>Celebration Banner</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary submit-btn">Claim It</button>
+        <p class="modal-note">We will be in touch shortly regarding your interest in this ready to ship banner!</p>
+      </form>
+
+      <div class="modal-success" id="claimSuccess">
+        <h3 class="script" style="font-size:1.8rem;">Yay, thank you!</h3>
+        <p class="modal-note" style="margin-top:6px;">We will be in touch shortly regarding your interest in this ready to ship banner!</p>
+
+        <div class="pickup-card">
+          <h4>Pick-Up Availability <span class="optional-tag">(optional)</span></h4>
+          <p class="pickup-sub">Would you like to schedule a local pick-up time?</p>
+          <div class="pickup-choice" id="pickupChoiceClaim">
+            <button type="button" class="btn btn-ghost" id="pickupYesBtnClaim">Yes, schedule a pickup</button>
+            <button type="button" class="btn btn-ghost" id="pickupNoBtnClaim">No, skip this</button>
+          </div>
+          <div class="calendly-wrapper" id="calendlyWrapperClaim">
+            <div class="calendly-inline-widget" data-url="https://calendly.com/kmb4kendyl/30min" style="min-width:260px; height:560px;"></div>
+          </div>
+        </div>
+
+        <a href="pay-your-banner.html?type=ready" class="btn btn-primary" style="margin-top:18px; width:100%; justify-content:center;">Continue to Payment</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Brush &amp; Bloom Banners</h4>
+        <p style="max-width:32ch; font-size:0.92rem; line-height:1.6;">Hand-painted banners and party art, made one brushstroke at a time.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="shop.html#custom">Custom Banners</a>
+        <a href="shop.html#ready">Ready to Ship</a>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <a href="index.html#about">About</a>
+        <a href="refunds-shipping.html">Refunds &amp; Shipping</a>
+        <a href="start-your-banner.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Brush &amp; Bloom Banners. All rights reserved.</span>
+      <span>Made with paint and patience.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Claim Banner modal
+  const claimBtn = document.getElementById('claimBtn');
+  const claimOverlay = document.getElementById('claimOverlay');
+  const claimClose = document.getElementById('claimClose');
+  const claimForm = document.getElementById('claimForm');
+  const claimSuccess = document.getElementById('claimSuccess');
+
+  // Pick-up scheduling toggle for the claim modal.
+  const pickupChoiceClaim = document.getElementById('pickupChoiceClaim');
+  const pickupYesBtnClaim = document.getElementById('pickupYesBtnClaim');
+  const pickupNoBtnClaim = document.getElementById('pickupNoBtnClaim');
+  const calendlyWrapperClaim = document.getElementById('calendlyWrapperClaim');
+
+  pickupYesBtnClaim.addEventListener('click', () => {
+    pickupChoiceClaim.style.display = 'none';
+    calendlyWrapperClaim.classList.add('expanded');
+  });
+  pickupNoBtnClaim.addEventListener('click', () => {
+    pickupChoiceClaim.style.display = 'none';
+    calendlyWrapperClaim.classList.remove('expanded');
+  });
+
+  function openClaimModal(){
+    claimOverlay.classList.add('open');
+    claimForm.style.display = 'flex';
+    claimSuccess.classList.remove('show');
+    pickupChoiceClaim.style.display = 'flex';
+    calendlyWrapperClaim.classList.remove('expanded');
+    claimForm.reset();
+  }
+  function closeClaimModal(){
+    claimOverlay.classList.remove('open');
+  }
+
+  claimBtn.addEventListener('click', openClaimModal);
+  claimClose.addEventListener('click', closeClaimModal);
+  claimOverlay.addEventListener('click', (e) => {
+    if (e.target === claimOverlay) closeClaimModal();
+  });
+
+  function encodeClaim(data) {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  }
+
+  claimForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(claimForm).entries());
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeClaim(data),
+    })
+      .then(() => {
+        claimForm.style.display = 'none';
+        claimSuccess.classList.add('show');
+      })
+      .catch(() => {
+        // Friendly fallback if tested locally, before this is hosted on Netlify.
+        claimForm.style.display = 'none';
+        claimSuccess.classList.add('show');
+      });
+  });
+</script>
+
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+</body>
+</html>
