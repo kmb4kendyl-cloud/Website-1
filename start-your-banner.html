@@ -385,6 +385,13 @@
     font-family:'DM Sans',sans-serif; font-weight:500; font-size:0.82rem; color:rgba(74,37,54,0.55);
   }
   .pickup-sub{margin:0 0 18px; font-size:0.92rem; color:rgba(74,37,54,0.78);}
+  .pickup-choice{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .pickup-choice .btn{padding:10px 18px; font-size:0.88rem;}
+  .calendly-wrapper{
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .35s ease, opacity .3s ease; margin-top:0;
+  }
+  .calendly-wrapper.expanded{max-height:650px; opacity:1; margin-top:20px;}
 </style>
 </head>
 <body>
@@ -504,8 +511,14 @@
 
           <div class="pickup-card">
             <h4>Pick-Up Availability <span class="optional-tag">(optional)</span></h4>
-            <p class="pickup-sub">If local, select a time for pick up below.</p>
-            <div class="calendly-inline-widget" data-url="https://calendly.com/kmb4kendyl/30min" style="min-width:280px; height:630px;"></div>
+            <p class="pickup-sub">Would you like to schedule a local pick-up time?</p>
+            <div class="pickup-choice" id="pickupChoice">
+              <button type="button" class="btn btn-ghost" id="pickupYesBtn">Yes, schedule a pickup</button>
+              <button type="button" class="btn btn-ghost" id="pickupNoBtn">No, skip this</button>
+            </div>
+            <div class="calendly-wrapper" id="calendlyWrapper">
+              <div class="calendly-inline-widget" data-url="https://calendly.com/kmb4kendyl/30min" style="min-width:280px; height:630px;"></div>
+            </div>
           </div>
 
           <a href="pay-your-banner.html?type=custom" id="continueToPayment" class="btn btn-primary">Continue to Payment</a>
@@ -557,6 +570,21 @@
   const params = new URLSearchParams(window.location.search);
   const bannerType = params.get('type') === 'ready' ? 'ready' : 'custom';
   continueToPayment.href = `pay-your-banner.html?type=${bannerType}`;
+
+  // Pick-up scheduling toggle: expand Calendly only if they say yes.
+  const pickupChoice = document.getElementById('pickupChoice');
+  const pickupYesBtn = document.getElementById('pickupYesBtn');
+  const pickupNoBtn = document.getElementById('pickupNoBtn');
+  const calendlyWrapper = document.getElementById('calendlyWrapper');
+
+  pickupYesBtn.addEventListener('click', () => {
+    pickupChoice.style.display = 'none';
+    calendlyWrapper.classList.add('expanded');
+  });
+  pickupNoBtn.addEventListener('click', () => {
+    pickupChoice.style.display = 'none';
+    calendlyWrapper.classList.remove('expanded');
+  });
 
   function encode(data) {
     return Object.keys(data)
